@@ -1,4 +1,3 @@
-import Expenses from "./Expenses";
 import ExpenseItem from "./ExpenseItem";
 import "./ExpensesList.css";
 

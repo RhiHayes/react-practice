@@ -3,9 +3,12 @@ import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
 
+   //States to use user input
    const [enteredTitle, setEnteredTitle] = useState("");
    const [enteredAmount, setEnteredAmount] = useState(""); 
    const [enteredDate, setEnteredDate] = useState(""); 
+
+//Another way to use state by using an object instead of 3 seperate states
 
         // const [userInput, setUserInput] = useState({
         //     enteredTitle: "",
@@ -35,15 +38,15 @@ function ExpenseForm(props) {
     }
 
     function submitHandler(event) {
-        event.preventDefault();
+        event.preventDefault(); //Keeps page from refreshing
 
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
+            amount: +enteredAmount, //Forces this value to be a number
             date: new Date(enteredDate)
         }
 
-        props.onSaveExpenseData(expenseData); //Prop that points to function in NewExpense
+        props.onSaveExpenseData(expenseData); //Custom value in NewExpense.js passes in expenseData
 
         //Clearing Data in form after submit
         setEnteredTitle("");
@@ -51,6 +54,9 @@ function ExpenseForm(props) {
         setEnteredDate("");
     }
 
+
+    //onCancel points to a function (which activates it) passed from NewExpense.js 
+    //through props
     return <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
             <div className="new-expense__control">
